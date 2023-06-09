@@ -1,0 +1,84 @@
+From 64b41e0802f51c6a11652e4f0daec80c2c3b1c31 Mon Sep 17 00:00:00 2001
+From: Garrett Giordano <ggiordano@phytec.com>
+Date: Thu, 18 May 2023 15:54:38 -0700
+Subject: [PATCH] arm64: dts: ti: k3-am62-phyboard-lyra: redbeet Overlay
+
+Add a device tree overlay for the redbeet board.
+
+Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
+---
+ arch/arm64/boot/dts/ti/Makefile               |  1 +
+ .../dts/ti/k3-am62-phyboard-lyra-redbeet.dts  | 49 +++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-redbeet.dts
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 2cc7c04b2cec..7778064ac989 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -88,6 +88,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-vm016-mipi.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-oldi-lcd185.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-rpmsg.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-gpio-fan.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-redbeet.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phycore-disable-spi-nor.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phycore-disable-rtc.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am62-phycore-disable-eth-phy.dtbo
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-redbeet.dts b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-redbeet.dts
+new file mode 100644
+index 000000000000..dab7d61bebb1
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-redbeet.dts
+@@ -0,0 +1,49 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2022 PHYTEC America LLC
++ * Author: Garrett Giordano <ggiordano@phytec.com>
++ */
++
++// Overlay for the Qualcomm Atheros QCA7000 on I2SE's PLC Stamp micro EVK
++// Visit: https://www.i2se.com/product/plc-stamp-micro-evk for details
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/k3.h>
++
++/dts-v1/;
++/plugin/;
++
++&main_pmx0 {
++	main_spi0_pins_default: main-spi0-pins-default {
++			pinctrl-single,pins = <
++					AM62X_IOPAD(0x01bc, PIN_INPUT, 0)	 /* (A14) SPI0_CLK */
++					AM62X_IOPAD(0x01b4, PIN_OUTPUT, 0)	 /* (A13) SPI0_CS0 */
++					AM62X_IOPAD(0x01c0, PIN_OUTPUT, 0)	 /* (B13) SPI0_D0 */
++					AM62X_IOPAD(0x01c4, PIN_INPUT, 0)	 /* (B14) SPI0_D1 */
++					AM62X_IOPAD(0x194, PIN_INPUT, 7)	 /* (N20) MCASP0_AXR3.GPIO1_7 */
++			>;
++	};
++};
++
++&main_spi0{
++	/* needed to avoid dtc warning */
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_spi0_pins_default>;
++	ti,pindir-d0-out-d1-in = <1>;
++
++	qca7000: qca7000@0 {
++			status = "okay";
++			compatible = "qca,qca7000";
++			reg = <0x0>;						/* CE0 */
++			pinctrl-names = "default";
++			interrupt-parent = <&main_gpio1>;
++			interrupts = <7 0x1>;				/* rising edge */
++			spi-max-frequency = <8000000>;
++			spi-cpha;							/* SPI mode: CPHA=1 */
++			spi-cpol;							/* SPI mode: CPOL=1 */
++	};
++};
+-- 
+2.25.1
+
