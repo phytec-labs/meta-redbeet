@@ -13,11 +13,13 @@ This repo holds the software necessary to enable and test SPI communication betw
 ## Pin Configurtion
 <img src="AM62_Phyboard_Lyra_To_Redbeet_Pinout.png" width="410" height="200">
 
-There are two parts to this meta-layer. The Device Tree Overlay and PLC Utils. 
+There are two things included in this meta-layer. The Device Tree Overlay and PLC Utils.
 
 - **Overlay** - contains the device tree changes that we need to MUX our SPI pins on the expansion header, and to enable the driver for the RED beet.
 
-- [PLC Utils](https://github.com/qca/open-plc-utils) - The softwares used to test/verify communication between the AM62 and the RED beet. These were pre-compiled by PHYTEC to run on the AM62/AM62A ARM64 Embedded Linux.
+- **PLC Utils** - The softwares used to test/verify communication between the AM62 and the RED beet. These were pre-compiled by PHYTEC to run on the AM62/AM62A ARM64 Embedded Linux.
+
+	Source [PLC Utils](https://github.com/qca/open-plc-utils)
 
 
 2 - Adding the meta-phytec_redbeet layer to your build
