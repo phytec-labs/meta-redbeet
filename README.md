@@ -32,7 +32,7 @@ Enter the `/sources` directory of your yocto build and checkout the meta-layer
 git clone https://github.com/phytec-labs/meta-phytec_redbeet.git
 
 # Add the layer to Yocto
-bitbake-layers add-layer meta-phytec_redbeet'
+bitbake-layers add-layer meta-phytec_redbeet
 ```
 
 You can make sure the build was successful by checking to see if `k3-am62-phyboard-lyra-redbeet.dtbo` is present on the SD cards `/boot ` partition.
