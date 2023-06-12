@@ -23,7 +23,7 @@ There are two parts to this meta-layer. The Device Tree Overlay and PLC Utils.
 2 - Adding the meta-phytec_redbeet layer to your build
 ======================================================
 
-Enter the sources directory of your yocto build and checkout the meta-layer
+Enter the `/sources` directory of your yocto build and checkout the meta-layer
 
 ```bash
 # Clone the meta-layer
@@ -33,13 +33,14 @@ git clone git@github.com:phytec-labs/meta-phytec_redbeet.git
 bitbake-layers add-layer meta-phytec_redbeet'
 ```
 
+You can make sure the build was successful by checking to see if `k3-am62-phyboard-lyra-redbeet.dtbo` is present on the SD cards `/boot ` partition.
 
 3 - Enabling and Testing Overlay
 =================================
 
-1. Copy ``k3-am62-phyboard-lyra-redbeet.dtbo`` to ``/boot`` partition on AM62 SD Card
-2. To enable the overlay, stop the boot sequence in u-boot and run the following commands
- ```bash 
+Stop the boot sequence in u-boot and run the following commands to enable the device tree overlay.
+
+```bash
 => setenv overlays k3-am62-phyboard-lyra-redbeet.dtbo
 => saveenv
 ```
