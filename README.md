@@ -19,7 +19,7 @@ There are two things included in this meta-layer. The Device Tree Overlay and PL
 
 - **PLC Utils** - The softwares used to test/verify communication between the AM62 and the RED beet. These were pre-compiled by PHYTEC to run on the AM62/AM62A ARM64 Embedded Linux.
 
-	Source [PLC Utils](https://github.com/qca/open-plc-utils)
+	[PLC Utils - Source](https://github.com/qca/open-plc-utils)
 
 
 2 - Adding the meta-phytec_redbeet layer to your build
