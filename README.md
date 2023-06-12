@@ -67,23 +67,11 @@ qcaspi spi1.0 eth2: SPI thread created
 4 - Using PLC-Utils
 ======================
 
-1. Copy ``plc-utils`` folder onto the ``/boot`` partition of the SD Card.
-2. make the local bin directory if one doesnt exist
-	```
-	mkdir /usr/local/bin -p
-	```
-3. Copy the software from ``plc-utils/bin`` into ``local/bin`` directory.
-	```
-	cp /boot/plc-utils/bin/* /usr/local/bin/
-	```
-4. Add execute permissions to our software
-	```
-	chmod +xwr /usr/local/bin/*
-	```
-5. We can now test the communication the REDbeet
-	``` bash
-	plctool -i eth2 -rI
-	```
+We can now test the communication the REDbeet
+``` bash
+plctool -i eth2 -rI
+```
+
 An example of a successfull communication:
 ``` bash
 root@phyboard-lyra-am62axx-1:~# plctool -i eth2 -rI
