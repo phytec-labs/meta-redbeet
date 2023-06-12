@@ -1,12 +1,12 @@
 Table of Contents
 =================
-	   I. Introduction
-	  II. Adding the meta-phytec_redbeet layer to your build
-	 III. Enabling Overlay
-	IIII. Using PLC-Utils
+	1. Introduction
+	2. Adding the meta-phytec_redbeet layer to your build
+	3. Enabling Overlay
+	4. Using PLC-Utils
 
 
-I. Introduction
+1 - Introduction
 ==================
 This repo holds the software necessary to enable and test SPI communication between the AM62/AM62A on PHYTECS Phyboard-Lyra carrier board and the PEV Automotive RED beet Carrier board EVB.
 
@@ -20,7 +20,7 @@ There are two parts to this meta-layer. The Device Tree Overlay and PLC Utils.
 - [PLC Utils](https://github.com/qca/open-plc-utils) - The softwares used to test/verify communication between the AM62 and the RED beet. These were pre-compiled by PHYTEC to run on the AM62/AM62A ARM64 Embedded Linux.
 
 
-II. Adding the meta-phytec_redbeet layer to your build
+2 - Adding the meta-phytec_redbeet layer to your build
 ======================================================
 
 Enter the sources directory of your yocto build and checkout the meta-layer
@@ -34,7 +34,7 @@ bitbake-layers add-layer meta-phytec_redbeet'
 ```
 
 
-III. Enabling and Testing Overlay
+3 - Enabling and Testing Overlay
 =================================
 
 1. Copy ``k3-am62-phyboard-lyra-redbeet.dtbo`` to ``/boot`` partition on AM62 SD Card
@@ -61,7 +61,7 @@ qcaspi spi1.0: Using random MAC address: be:1b:88:51:1e:20
 qcaspi spi1.0 eth2: SPI thread created
 ```
 
-IIII. Using PLC-Utils
+4 - Using PLC-Utils
 ======================
 
 1. Copy ``plc-utils`` folder onto the ``/boot`` partition of the SD Card.
