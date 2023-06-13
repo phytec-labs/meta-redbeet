@@ -1,7 +1,7 @@
 Table of Contents
 =================
 	1. Introduction
-	2. Adding the meta-phytec_redbeet layer to your build
+	2. Adding the meta-redbeet layer to your build
 	3. Enabling Overlay
 	4. Using PLC-Utils
 
@@ -22,17 +22,17 @@ There are two items included in this meta-layer.
 	PLC Utils - [Source](https://github.com/qca/open-plc-utils)
 
 
-2 - Adding the meta-phytec_redbeet layer to your build
+2 - Adding the meta-redbeet layer to your build
 ======================================================
 
 Enter the `/sources` directory of your yocto build and clone the meta-layer
 
 ```bash
 # Clone the meta-layer
-git clone https://github.com/phytec-labs/meta-phytec_redbeet.git
+git clone https://github.com/phytec-labs/meta-redbeet.git
 
 # Add the layer to Yocto
-bitbake-layers add-layer meta-phytec_redbeet
+bitbake-layers add-layer meta-redbeet
 ```
 
 You can make sure the build was successful by checking to see if `k3-am62-phyboard-lyra-redbeet.dtbo` is present on the SD cards `/boot ` partition.
